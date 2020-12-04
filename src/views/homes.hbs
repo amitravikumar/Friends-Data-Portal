@@ -1,0 +1,21 @@
+<div class="jumbotron text-center">
+  <h1 class="display-4">Friends Portal</h1>
+  <p class="lead">
+    Safekeep your Friend's contact here..!!
+  </p>
+  <div class="row justify-content-center">
+    <img src="../images/friends.jpg" class="img-fluid" alt="Responsive image" style="max-width:400px; max-height:400px">
+  </div>
+
+  <hr class="my-4" />
+  <p class="lead">
+    {{#if isUser}}
+    <a href="/friends" class="btn btn-primary btn-lg">Friends</a>
+    <a href="/edituser" class="btn btn-primary btn-lg">Edit User</a>
+    {{else}}
+    <a href="/Login" class="btn btn-primary btn-lg">Login</a>
+    <a href="/adduser" class="btn btn-primary btn-lg">Sign up</a>
+    {{/if}}
+  </p>
+  <div></div>
+</div>

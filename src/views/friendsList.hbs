@@ -1,0 +1,73 @@
+<div class="container my-5">
+  <h1>Friend Details</h1>
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Phone no</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each data}}
+      <tr>
+        <th scope="row">{{this.id}}</th>
+        <td>{{this.friendFirstName}}</td>
+        <td>{{this.friendLastName}}</td>
+        <td>{{this.age}}</td>
+        <td>{{this.phoneno}}</td>
+        <td><a href="/editfriends/{{this.id}}">Edit</a></td>
+        <td><a href="/delete/{{this.id}}" data-friendId="{{this.id}}" class="delete-button">Delete</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <a class="btn btn-primary btn-lg mt-4" href="/edituser">Edit User</a>
+  <a class="btn btn-primary btn-lg mt-4" href="/Addfriends">Add Friend</a>
+  <a class="btn btn-primary btn-lg mt-4" href="/logout">Logout</a>
+</div>
+
+<script>
+  window.document.body.addEventListener("click", event => {
+    const $targetElement = event.target;
+    if ($targetElement.classList.contains("delete-button")) {
+      event.preventDefault();
+      const friendId = $targetElement.getAttribute("data-friendId")
+      console.log(friendId)
+
+      const config = {
+        method: "DELETE"
+      }
+
+      fetch(`/user/delete/${friendId}`, config)
+        .then(response => {
+          if (response.status === 200) {
+            return response.json()
+          } else {
+            throw (new Error(response.status))
+          }
+        }
+        )
+        .then(data => {
+          alert(data.message)
+          window.location.reload();
+        })
+        .catch(error => {
+          switch (error.message) {
+            case "400":
+              alert("Please check form values...");
+              break;
+            case "500":
+              alert("Please Try after some time...");
+              break;
+            default:
+              console.error(error);
+          }
+        });
+    }
+  })
+</script>
