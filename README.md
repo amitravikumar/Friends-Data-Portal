@@ -1,8 +1,7 @@
 # Friends-Data-Portal
 
-Safe keep your Friend's Data in the our site and access it anywhere..
-
- Wanna visit the site [Friends Portal](https://rpl5u.sse.codesandbox.io/)
+The data can be stored, secured and displayed anywhere.
+Live demo here -> [Friends Portal](https://rpl5u.sse.codesandbox.io/)
 
 # Technical aspects:
 * Node.js
